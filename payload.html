@@ -1,0 +1,105 @@
+<html>
+<head>
+    <title>PS4 6.72 Jailbreak</title>
+</head>
+<body>
+<a style="top: calc(50% - 85px);left: calc(50% - 380px);position: absolute;font-family: Arial;color: blue;font-size: 130px;">Carregando...</a>
+<script>
+	if(document.cookie.indexOf('kex=0') >= 0)
+		document.location.href = '.';
+	document.cookie = 'kex=0';
+</script>
+<script>
+	function print(e){}
+	
+	function loadBin(path){
+		request = new XMLHttpRequest();
+		request.overrideMimeType('text/plain; charset=x-user-defined');
+		request.open('GET', path, false);
+		request.send();
+		return Uint8Array.from(request.response, c => c.charCodeAt(0));
+	}
+	
+	function allocBin(bin){
+		window.mira_blob_2_len = bin.length;
+		window.mira_blob_2 = malloc(window.mira_blob_2_len);
+		write_mem(window.mira_blob_2, bin);
+	}
+	
+	function getHashParams()
+	{
+		var ans = {};
+		var p = document.location.hash.substr(1).split("&");
+		for(var i = 0; i < p.length; i++)
+		{
+			var kv = p[i].split('=');
+			var k = kv.shift();
+			ans[k] = decodeURIComponent(kv.join('='));
+		}
+		return ans;
+	}
+
+	function loadScript(path)
+	{
+		var xhr = new XMLHttpRequest();
+		xhr.open('GET', path, false);
+		xhr.send('');
+		
+		eval.call(window, xhr.responseText);
+	}
+</script>
+<script>
+	function go() {
+		loadScript("common/exploit.js");			
+		setTimeout(go2, 500);
+	}
+	function go2(){
+		loadScript("common/helpers.js");
+		setTimeout(go3, 500);
+	}
+	function go3(){
+		loadScript("common/malloc.js");
+		setTimeout(go4, 500);
+	}
+	function go4(){
+		loadScript("common/rop.js");
+		setTimeout(go5, 500);
+	}
+	function go5(){
+		loadScript("common/syscalls.js");
+		setTimeout(go6, 500);
+	}
+	function go6(){
+		loadScript("common/syscalls2.js");
+		setTimeout(go7, 500);
+	}
+	function go7(){
+		loadScript("jb.js");
+		setTimeout(go8, 500);
+	}
+	function go8(){
+		
+		(function() {
+			var hp = getHashParams();
+			if('p0' in hp)
+				loadScript(hp['p0']);
+			if('p1' in hp)
+				loadScript(hp['p1']);
+			if('bin' in hp)
+				allocBin(loadBin(hp['bin']));
+		})();
+		
+		setTimeout(go9, 500);
+	}
+	function go9(){
+		loadScript("netcat.js");
+
+		if(main_ret == 179 /* already hacked */ || main_ret == 0 /* success */)
+			read_ptr_at(0);
+		else
+			alert("Falha no Jailbreak! Reinicie o PS4.");
+	}
+	setTimeout(go, 500);
+</script>
+</body>
+</html>
