@@ -1,5 +1,5 @@
 CACHE MANIFEST
-# random: 94D337D53D5EA6C0E77A19C41D1461E9
+# random: 94D337D5145EA5C0E77A19C41D1461E9
 
 CACHE:
 bootstrap/css/bootstrap.min.css
@@ -19,6 +19,7 @@ netcat.js
 bin/loader.js
 bin/goldhen.bin
 bin/mira.elf
+bin/mira_gdb.elf
 bin/mira.bin
 bin/orbistoolbox.bin
 bin/todex.bin
