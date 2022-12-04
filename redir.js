@@ -1,1 +1,1 @@
-document.location = "https://marcussacana.github.io/JB672";
+document.location = "https://marcussacana.github.io/JB672/";
