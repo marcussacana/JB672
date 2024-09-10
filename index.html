@@ -51,6 +51,9 @@
 	function netcat(){
 		document.location.href = "payload.html#p0=bin/loader.js";
 	}
+	function redirect(){
+		document.location = inputUrl.value;
+	}
 	</script>
     
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -143,6 +146,28 @@
 				<h5 class="card-title">NETCAT</h5>
 				<p class="card-text">Recebe um payload remotamente.</p>
 				<a href="#" class="btn btn-primary" onclick='netcat()'>Executar</a>
+			  </div>
+			</div>
+		  </div>
+		</div>
+		<br/>
+		<div class="row">
+		  <div class="col-sm-6">
+			<div class="card">
+			  <div class="card-body">
+				<h5 class="card-title">Redirecionar</h5>
+				<form class="form-inline">
+					<div class="row">
+						<div class="col-sm-10">
+							<div class="form-group mb-">
+								<input type="text" class="form-control" id="inputUrl" placeholder="Enter Url">
+							</div>
+						</div>
+						<div class="col-sm-2">
+							<button onClick="redirect()" class="btn btn-primary mb-2">Visitar</button>
+						</div>
+					</div>
+				</form>
 			  </div>
 			</div>
 		  </div>
